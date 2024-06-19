@@ -47,4 +47,11 @@ public class ClienteController {
     public String obtenerPreferencia(Integer idCliente) {
         return encontrarCliente(idCliente).preferenciaContacto;
     }
+
+    public void mostrarClientes() {
+        for (Cliente cliente : clientes) {
+            System.out.println("Cliente Nro: " + cliente.idCliente + "   Nombre: " + cliente.nombre + "   Apellido: "
+                    + cliente.apellido);
+        }
+    }
 }

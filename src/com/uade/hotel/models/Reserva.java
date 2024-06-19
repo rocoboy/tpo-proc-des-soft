@@ -7,6 +7,9 @@ import java.util.List;
 import com.uade.hotel.observers.IObservador;
 import com.uade.hotel.observers.ISujeto;
 import com.uade.hotel.observers.Sujeto;
+import com.uade.hotel.states.estadoReserva.ContextoReserva;
+import com.uade.hotel.states.estadoReserva.IReservaState;
+import com.uade.hotel.states.estadoReserva.ReservaStatePendiente;
 
 public class Reserva {
 
@@ -16,8 +19,12 @@ public class Reserva {
     public Date checkOut;
     public List<DetalleCliente> huespedes;
     public String medioDePago;
+    public Float montoReserva;
 
-    // falta agregar estado a la reserva
+    // estado
+    public ContextoReserva estadoReserva;
+
+    // observers
     private ISujeto sujeto;
     private List<IObservador> observadores = new ArrayList<>();
 
@@ -32,6 +39,9 @@ public class Reserva {
         this.medioDePago = medioDePago;
 
         this.sujeto = new Sujeto();
+
+        this.estadoReserva = new ContextoReserva();
+        estadoReserva.cambiarEstado(new ReservaStatePendiente());
     }
 
     public void setObserver(IObservador observador) {
@@ -39,5 +49,14 @@ public class Reserva {
         observadores.add(observador);
     }
 
-    // agregar funciones de estado
+    public void cambiarEstadoReserva(IReservaState nuevoEstado) {
+        this.estadoReserva.cambiarEstado(nuevoEstado);
+        // avisamos el cambio del estado
+        sujeto.postMessage(this.estadoReserva.consultarEstado());
+    }
+
+    public void establecerMonto(Float montoReserva) {
+        this.montoReserva = montoReserva;
+    }
+
 }
