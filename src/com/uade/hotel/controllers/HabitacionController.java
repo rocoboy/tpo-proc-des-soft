@@ -1,24 +1,57 @@
 package com.uade.hotel.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import com.uade.hotel.factories.room.Habitacion;
+import com.uade.hotel.states.estadohabitacion.HabitacionStateDisponible;
+import com.uade.hotel.states.estadohabitacion.HabitacionStateOcupado;
+
 public class HabitacionController {
 
-    public void buscarHabitaciones() {
-        // este va a ser el principal de la busqueda del iterator
+    List<Habitacion> habitaciones;
+
+    public HabitacionController() {
+        habitaciones = new ArrayList<>();
     }
 
-    public boolean reservarHabitacion() {
+    public boolean cargarHabitacion(Habitacion habitacion) {
+        habitaciones.add(habitacion);
         return false;
-        // me avisa si se pudo reservar la habitación, puede estar en mantenimiento o
-        // ocupada
     }
 
-    public boolean liberarHabitacion() {
-        return false;
+    public Habitacion buscarHabitaciones(Integer idHabitacion) {
+        for (Habitacion habitacion : habitaciones) {
+            if (Objects.equals(habitacion.obtenerIdHabitacion(), idHabitacion)) {
+                return habitacion;
+            }
+        }
+        return null;
+    }
 
-        // si la habitación esta en mantenimiento o no se fija
+    public void reservarHabitacion(Integer idHabitacion) {
+        buscarHabitaciones(idHabitacion).cambiarEstado(new HabitacionStateOcupado());
+    }
+
+    public void liberarHabitacion(Integer idHabitacion) {
+        buscarHabitaciones(idHabitacion).cambiarEstado(new HabitacionStateDisponible());
     }
 
     public void generarReporte() {
-        // nos pide mostrar las habitaciones reservadas y disponibles
+        for (Habitacion habitacion : habitaciones) {
+            System.out.println(
+                    "Habitacion " + habitacion.obtenerIdHabitacion() + "  Estado " + habitacion.obtenerEstado());
+        }
+    }
+
+    public List<Habitacion> filtrarHabitaciones(String estado) {
+        List<Habitacion> habitacionesFiltradas = new ArrayList<>();
+        for (Habitacion habitacion : habitaciones) {
+            if (Objects.equals(habitacion.obtenerEstado(), estado)) {
+                habitacionesFiltradas.add(habitacion);
+            }
+        }
+        return habitacionesFiltradas;
     }
 }

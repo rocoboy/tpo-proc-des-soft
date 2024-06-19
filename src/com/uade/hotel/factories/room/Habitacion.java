@@ -23,4 +23,12 @@ public abstract class Habitacion {
         System.out.printf("Internet: %s %n", internet);
         System.out.printf("Estado de la habitacion: %s %n", estado.consultarEstado());
     }
+
+    public Integer obtenerIdHabitacion() {
+        return this.idHabitacion;
+    }
+
+    public String obtenerEstado() {
+        return this.estado.consultarEstado();
+    }
 }
