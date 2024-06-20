@@ -54,4 +54,37 @@ public class HabitacionController {
         }
         return habitacionesFiltradas;
     }
+
+    public void buscarHabitaciones(String tipo, int cantidadDePersonas) {
+        List<Habitacion> habitacionesFiltradas = new ArrayList<>();
+        for (Habitacion habitacion : habitaciones) {
+            if (Objects.equals(habitacion.obtenerTipo(), tipo)
+                    && (habitacion.obtenerPersonas() >= cantidadDePersonas)
+                    && "Disponible".equals(habitacion.obtenerEstado())) {
+                habitacionesFiltradas.add(habitacion);
+            }
+        }
+        mostrarHabitaciones(habitacionesFiltradas);
+    }
+
+    public void mostrarHabitaciones() {
+        for (Habitacion habitacion : habitaciones) {
+            System.out.println("id: " + habitacion.obtenerIdHabitacion() + "  Estado: " + habitacion.obtenerEstado());
+        }
+    }
+
+    private void mostrarHabitaciones(List<Habitacion> habitaciones) {
+        for (Habitacion habitacion : habitaciones) {
+            System.out.println(
+                    "id: " + habitacion.obtenerIdHabitacion() + "  Estado: " + habitacion.obtenerEstado() + "");
+        }
+    }
+
+    public int contarHabitaciones() {
+        return this.habitaciones.size();
+    }
+
+    public String obtenerEstadoHabitacion(int idHabitacion) {
+        return buscarHabitaciones(idHabitacion).obtenerEstado();
+    }
 }

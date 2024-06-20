@@ -6,17 +6,17 @@ import com.uade.hotel.observers.IObservador;
 
 public class Cliente {
 
-    public Integer idCliente;
+    public int idCliente;
     public String nombre;
     public String apellido;
-    public String dni;
+    public int dni;
     public String preferenciaContacto;
     public String email;
     public String telefono;
 
     private List<IObservador> reservas;
 
-    public Cliente(Integer idCliente, String nombre, String apellido, String dni, String preferenciacontacto,
+    public Cliente(int idCliente, String nombre, String apellido, int dni, String preferenciacontacto,
             String email, String telefono) {
 
         this.idCliente = idCliente;

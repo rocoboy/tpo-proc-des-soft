@@ -21,7 +21,11 @@ public class ReservaController {
 
         Reserva nuevaReserva = new Reserva(idHabitacion, idCliente, idHabitacion, checkIn, checkOut, clientesReserva,
                 medioDePago);
-        reservas.add(nuevaReserva);
+        if (obtenerIdReserva(idHabitacion) == -1) {
+            reservas.add(nuevaReserva);
+        } else {
+            System.out.println("no es posible reservar, ya esta reservada la habitación");
+        }
 
         // tengo que agregar los observers
     }
@@ -50,5 +54,12 @@ public class ReservaController {
             }
         }
         return null;
+    }
+
+    public void mostrarReservas() {
+        for (Reserva reserva : reservas) {
+            System.out.println("id: " + reserva.idReserva + " clienteId: " + reserva.idCliente + " HabitacionId: "
+                    + reserva.idHabitacion + " Medio de pago:  " + reserva.medioDePago);
+        }
     }
 }

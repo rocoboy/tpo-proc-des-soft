@@ -15,6 +15,9 @@ public class ClienteController {
     }
 
     public void cargarCliente(Cliente cliente) {
+
+        // añadir logica para que no cree otros clientes con el mismo dni
+
         this.clientes.add(cliente);
     }
 

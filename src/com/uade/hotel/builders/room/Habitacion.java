@@ -1,9 +1,12 @@
 package com.uade.hotel.builders.room;
 
+import java.util.List;
+
 import com.uade.hotel.states.estadohabitacion.ContextoHabitacion;
 import com.uade.hotel.states.estadohabitacion.IHabitacionState;
 
 public class Habitacion {
+    String tipo;
     Integer idHabitacion;
     Integer cantidadPersonas;
     Boolean minibar;
@@ -11,7 +14,8 @@ public class Habitacion {
     boolean internet;
     ContextoHabitacion estado;
 
-    public Habitacion(Integer idHabitacion, Integer cantidadPersonas, Boolean minibar, boolean tv, boolean internet) {
+    public Habitacion(Integer idHabitacion, Integer cantidadPersonas, Boolean minibar, boolean tv, boolean internet,
+            String tipo) {
         this.idHabitacion = idHabitacion;
         this.cantidadPersonas = cantidadPersonas;
         this.minibar = minibar;
@@ -43,5 +47,13 @@ public class Habitacion {
 
     public String obtenerEstado() {
         return this.estado.consultarEstado();
+    }
+
+    public String obtenerTipo() {
+        return this.tipo;
+    }
+
+    public int obtenerPersonas() {
+        return this.cantidadPersonas;
     }
 }

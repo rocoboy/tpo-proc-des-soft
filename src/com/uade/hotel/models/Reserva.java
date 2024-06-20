@@ -45,6 +45,12 @@ public class Reserva {
 
         this.estadoReserva = new ContextoReserva();
         estadoReserva.cambiarEstado(new ReservaStatePendiente());
+
+        // se agrega un contador a la reserva para que esta pase a cancelada 24hs
+        // pasadas
+        // sin recibir un pago
+
+        // se configuran los boservers y el sujeto
     }
 
     public void setObserver(IObservador observador) {
@@ -60,6 +66,10 @@ public class Reserva {
 
     public void establecerMonto(Float montoReserva) {
         this.montoReserva = montoReserva;
+    }
+
+    public int obtenerIdHabitacion() {
+        return this.idHabitacion;
     }
 
 }

@@ -5,6 +5,7 @@ import com.uade.hotel.states.estadohabitacion.ContextoHabitacion;
 public class ConstructorComun implements IConstructor {
 
     Integer idHabitacion;
+    String tipo;
     Integer cantidadPersonas;
     Boolean minibar;
     boolean tv;
@@ -31,8 +32,13 @@ public class ConstructorComun implements IConstructor {
         this.internet = internet;
     }
 
+    public void setTipo() {
+        this.tipo = "Comun";
+    }
+
     public Habitacion getResultado() {
-        return new Habitacion(this.idHabitacion, this.cantidadPersonas, this.minibar, this.tv, this.internet);
+        return new Habitacion(this.idHabitacion, this.cantidadPersonas, this.minibar, this.tv, this.internet,
+                this.tipo);
     }
 
 }
