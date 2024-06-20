@@ -13,10 +13,11 @@ import com.uade.hotel.states.estadoReserva.ReservaStatePendiente;
 
 public class Reserva {
 
-    public Integer idReserva;
-    public Integer idCliente;
-    public Date checkIn;
-    public Date checkOut;
+    public int idReserva;
+    public int idCliente;
+    public int idHabitacion;
+    public java.util.Date checkIn;
+    public java.util.Date checkOut;
     public List<DetalleCliente> huespedes;
     public String medioDePago;
     public Float montoReserva;
@@ -28,11 +29,13 @@ public class Reserva {
     private ISujeto sujeto;
     private List<IObservador> observadores = new ArrayList<>();
 
-    public Reserva(Integer idReserva, Integer idCliente, Date checkIn, Date checkOut, List<DetalleCliente> huespedes,
+    public Reserva(int idReserva, int idCliente, int idHabitacion, java.util.Date checkIn, java.util.Date checkOut,
+            List<DetalleCliente> huespedes,
             String medioDePago) {
 
         this.idReserva = idReserva;
         this.idCliente = idCliente;
+        this.idHabitacion = idHabitacion;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.huespedes = huespedes;

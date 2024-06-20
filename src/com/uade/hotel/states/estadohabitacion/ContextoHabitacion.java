@@ -4,6 +4,10 @@ public class ContextoHabitacion implements IHabitacionState {
 
     private IHabitacionState estado;
 
+    public ContextoHabitacion() {
+        this.estado = new HabitacionStateDisponible();
+    }
+
     public void cambiarEstado(IHabitacionState estado) {
         this.estado = estado;
     }

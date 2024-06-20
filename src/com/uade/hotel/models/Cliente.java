@@ -1,6 +1,5 @@
 package com.uade.hotel.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.uade.hotel.observers.IObservador;

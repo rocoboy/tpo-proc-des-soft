@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.uade.hotel.factories.room.Habitacion;
+import com.uade.hotel.builders.room.Habitacion;
 import com.uade.hotel.states.estadohabitacion.HabitacionStateDisponible;
 import com.uade.hotel.states.estadohabitacion.HabitacionStateOcupado;
 

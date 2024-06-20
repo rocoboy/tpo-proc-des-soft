@@ -1,15 +1,24 @@
-package com.uade.hotel.factories.room;
+package com.uade.hotel.builders.room;
 
 import com.uade.hotel.states.estadohabitacion.ContextoHabitacion;
 import com.uade.hotel.states.estadohabitacion.IHabitacionState;
 
-public abstract class Habitacion {
+public class Habitacion {
     Integer idHabitacion;
     Integer cantidadPersonas;
     Boolean minibar;
     boolean tv;
     boolean internet;
     ContextoHabitacion estado;
+
+    public Habitacion(Integer idHabitacion, Integer cantidadPersonas, Boolean minibar, boolean tv, boolean internet) {
+        this.idHabitacion = idHabitacion;
+        this.cantidadPersonas = cantidadPersonas;
+        this.minibar = minibar;
+        this.tv = tv;
+        this.internet = internet;
+        this.estado = new ContextoHabitacion();
+    }
 
     public void cambiarEstado(IHabitacionState estado) {
         this.estado.cambiarEstado(estado);
@@ -22,6 +31,10 @@ public abstract class Habitacion {
         System.out.printf("Tv: %s %n", tv);
         System.out.printf("Internet: %s %n", internet);
         System.out.printf("Estado de la habitacion: %s %n", estado.consultarEstado());
+    }
+
+    public void setIdHabitacion(Integer idHabitacion) {
+        this.idHabitacion = idHabitacion;
     }
 
     public Integer obtenerIdHabitacion() {
