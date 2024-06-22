@@ -70,4 +70,7 @@ Reserva:
 Cosas a revisar:
 - a quien le asigno los costos de habitación si le asigno al controller de habitacion una estructura como del hotel pero con los costos
 - asignar los observers para todo
-- 
+- enviar los logs y demas a marketing y finanzas
+- mejorar el filtrado
+- implementar el iterator
+- dejar listo para que otros sistemas usen las funciones con adapters
