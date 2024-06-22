@@ -36,32 +36,38 @@ sistemas.
 ## Funcionalidades encontradas
 
 Gerente
-- Publicar Habitaciones disponibles
-- Generar Facturas (cuando se confirma el pago de la reserva)
-- Reservar habitaciones
-- Modificar costos de habitacion
+[x] Publicar Habitaciones disponibles 
+[] Generar Facturas (cuando se confirma el pago de la reserva) 
+[x] Reservar habitaciones  
+[] Modificar costos de habitacion
 
 Cliente
-- Buscar habitaciones
-- Reservar habitaciones
+[] Buscar habitaciones
+[x] Reservar habitaciones
 
 
 Funciones:
-- Filtrado en busqueda: tipo, extras, cantidad de personas 
-- Facturas se envian por medio elegido del cliente
-- La reserva se crea y pasadas 24hs sin pagarse se cancela automaticamente
-- cada cambio de la reserva lo ve el cliente y son logueados para que lo vea contables los pagos y a marketing
-- las funcionalidades pueden ser accedidas por otros sistemas
+[] Filtrado en busqueda: tipo, extras, cantidad de personas 
+[] Facturas se envian por medio elegido del cliente
+[] La reserva se crea y pasadas 24hs sin pagarse se cancela automaticamente
+[] cada cambio de la reserva lo ve el cliente y son logueados para que lo vea contables los pagos y a marketing
+[] las funcionalidades pueden ser accedidas por otros sistemas
 
 
 A tener en cuenta: 
-- una habitación no se debe poder reservar dos veces
+[x] una habitación no se debe poder reservar dos veces
 
 Reserva:
-- fecha de check in
-- fecha de checko out
-- cliente rgistrado
-- detalle de huespedes (nombre, apellido, dni)
-- medio de pago (transferencia, credito, debito, efectivo)
-- estado (pendiente de pago, pagada, cancelada)
-- calcular monto total (tipo, extras y fecha)
+[x] fecha de check in
+[x] fecha de checko out
+[x] cliente rgistrado
+[x] detalle de huespedes (nombre, apellido, dni)
+[x] medio de pago (transferencia, credito, debito, efectivo)
+[x] estado (pendiente de pago, pagada, cancelada)
+[x] calcular monto total (tipo, extras y fecha)
+
+
+Cosas a revisar:
+- a quien le asigno los costos de habitación si le asigno al controller de habitacion una estructura como del hotel pero con los costos
+- asignar los observers para todo
+- 

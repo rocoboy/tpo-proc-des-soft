@@ -14,11 +14,16 @@ public class ClienteController {
         this.clientes = new ArrayList<>();
     }
 
-    public void cargarCliente(Cliente cliente) {
+    public void cargarCliente(String nombre, String apellido, int dni, String preferencias, String email,
+            String telefono) {
 
-        // añadir logica para que no cree otros clientes con el mismo dni
-
-        this.clientes.add(cliente);
+        if (encontrarCliente(dni) == null) {
+            int idCliente = clientes.size() + 1;
+            Cliente cliente = new Cliente(idCliente, nombre, apellido, dni, preferencias, email, telefono);
+            this.clientes.add(cliente);
+        } else {
+            System.out.println("el cliente ya existe");
+        }
     }
 
     public void modificarCliente(Integer idCliente, Cliente nuevoCliente) {
@@ -34,21 +39,21 @@ public class ClienteController {
         return -1;
     }
 
-    public Cliente encontrarCliente(Integer idCliente) {
+    public Cliente encontrarCliente(int dni) {
         for (Cliente cliente : clientes) {
-            if (Objects.equals(cliente.idCliente, idCliente)) {
+            if (Objects.equals(cliente.dni, dni)) {
                 return cliente;
             }
         }
         return null;
     }
 
-    public void cambiarPreferencia(Integer idCliente, String nuevaPreferencia) {
+    public void cambiarPreferencia(int idCliente, String nuevaPreferencia) {
         clientes.get(encontrarIndexCliente(idCliente)).preferenciaContacto = nuevaPreferencia;
     }
 
-    public String obtenerPreferencia(Integer idCliente) {
-        return encontrarCliente(idCliente).preferenciaContacto;
+    public String obtenerPreferencia(int dni) {
+        return encontrarCliente(dni).preferenciaContacto;
     }
 
     public void mostrarClientes() {

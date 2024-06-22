@@ -27,6 +27,7 @@ public class App {
         ClienteController clienteController = new ClienteController();
         HabitacionController habitacionController = new HabitacionController();
         ReservaController reservaController = new ReservaController();
+        FacturacionController facturacionController = new FacturacionController();
 
         // defino las variables para usar con la consola
         Scanner scanner = new Scanner(System.in);
@@ -57,7 +58,7 @@ public class App {
                     cancelarReserva(habitacionController, reservaController);
                     break;
                 case 7:
-                    cambiarParametrosFacturacion(reservaController);
+                    cambiarParametrosFacturacion(facturacionController);
                     break;
                 case 8:
                     habitacionController.mostrarHabitaciones();
@@ -97,25 +98,13 @@ public class App {
     }
 
     public static void crearCliente(ClienteController clienteController) {
-        Cliente cliente = new Cliente(1, "Juan", "Perez", 1234567, "Email", "pepe@gmail.com", "11-2345-6789");
-        clienteController.cargarCliente(cliente);
-
-        System.out.println("Cliente creado con exito, lista de clientes:");
+        clienteController.cargarCliente("Juan", "Perez", 1234567, "Email", "pepe@gmail.com", "11-2345-6789");
         clienteController.mostrarClientes();
     }
 
     public static void crearHabitacion(HabitacionController habitacionController) {
-        IConstructor constructorComun = new ConstructorComun();
-        DirectorHabitacion directorHabitacion = new DirectorHabitacion();
-
-        if ("Comun".equals("Comun")) {
-            directorHabitacion.construirComun(constructorComun);
-            Habitacion habitacionComun = constructorComun.getResultado();
-            habitacionComun.setIdHabitacion(habitacionController.contarHabitaciones() + 1);
-            habitacionController.cargarHabitacion(habitacionComun);
-        }
-
-        System.out.println("Habitación creada");
+        // puedo almacenar si quiero el id de habitación que devuelve para usarlo luego
+        habitacionController.cargarHabitacion("Comun");
         habitacionController.mostrarHabitaciones();
     }
 

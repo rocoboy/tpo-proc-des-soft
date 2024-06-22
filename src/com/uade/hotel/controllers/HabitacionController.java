@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.uade.hotel.builders.room.ConstructorComun;
+import com.uade.hotel.builders.room.DirectorHabitacion;
 import com.uade.hotel.builders.room.Habitacion;
+import com.uade.hotel.builders.room.IConstructor;
 import com.uade.hotel.states.estadohabitacion.HabitacionStateDisponible;
 import com.uade.hotel.states.estadohabitacion.HabitacionStateOcupado;
 
@@ -16,9 +19,20 @@ public class HabitacionController {
         habitaciones = new ArrayList<>();
     }
 
-    public boolean cargarHabitacion(Habitacion habitacion) {
-        habitaciones.add(habitacion);
-        return false;
+    public int cargarHabitacion(String tipo) {
+        int idHabitacion = habitaciones.size() + 1;
+
+        IConstructor constructorComun = new ConstructorComun();
+        DirectorHabitacion directorHabitacion = new DirectorHabitacion();
+
+        if ("Comun".equals(tipo)) {
+            directorHabitacion.construirComun(constructorComun);
+            Habitacion habitacionComun = constructorComun.getResultado();
+            habitacionComun.setIdHabitacion(idHabitacion);
+            habitaciones.add(habitacionComun);
+            return idHabitacion;
+        }
+        return -1;
     }
 
     public Habitacion buscarHabitaciones(Integer idHabitacion) {
