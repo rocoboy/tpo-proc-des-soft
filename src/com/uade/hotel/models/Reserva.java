@@ -31,7 +31,7 @@ public class Reserva {
 
     public Reserva(int idReserva, int idCliente, int idHabitacion, java.util.Date checkIn, java.util.Date checkOut,
             List<DetalleCliente> huespedes,
-            String medioDePago) {
+            String medioDePago, Float montoReserva) {
 
         this.idReserva = idReserva;
         this.idCliente = idCliente;
@@ -40,7 +40,7 @@ public class Reserva {
         this.checkOut = checkOut;
         this.huespedes = huespedes;
         this.medioDePago = medioDePago;
-
+        this.montoReserva = montoReserva;
         this.sujeto = new Sujeto();
 
         this.estadoReserva = new ContextoReserva();

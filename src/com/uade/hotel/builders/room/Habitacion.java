@@ -13,6 +13,7 @@ public class Habitacion {
     boolean tv;
     boolean internet;
     ContextoHabitacion estado;
+    Float costoDiario;
 
     public Habitacion(Integer idHabitacion, Integer cantidadPersonas, Boolean minibar, boolean tv, boolean internet,
             String tipo) {
@@ -55,5 +56,13 @@ public class Habitacion {
 
     public int obtenerPersonas() {
         return this.cantidadPersonas;
+    }
+
+    public void setCostoDiario(Float costoDiario) {
+        this.costoDiario = costoDiario;
+    }
+
+    public Float getCostoDiario() {
+        return this.costoDiario;
     }
 }

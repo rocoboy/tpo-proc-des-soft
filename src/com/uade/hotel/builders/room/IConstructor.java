@@ -13,4 +13,6 @@ public interface IConstructor {
     public void setInternet(boolean internet);
 
     public Habitacion getResultado();
+
+    public void setCostoDiario(Float costoDiario);
 }

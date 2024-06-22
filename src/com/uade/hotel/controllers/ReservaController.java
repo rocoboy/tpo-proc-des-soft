@@ -17,10 +17,10 @@ public class ReservaController {
     }
 
     public void reservarHabitacion(int idHabitacion, int idCliente, java.util.Date checkIn, java.util.Date checkOut,
-            List<DetalleCliente> clientesReserva, String medioDePago) {
+            List<DetalleCliente> clientesReserva, String medioDePago, Float montoReserva) {
 
         Reserva nuevaReserva = new Reserva(idHabitacion, idCliente, idHabitacion, checkIn, checkOut, clientesReserva,
-                medioDePago);
+                medioDePago, montoReserva);
         if (obtenerIdReserva(idHabitacion) == -1) {
             reservas.add(nuevaReserva);
         } else {

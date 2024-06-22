@@ -11,6 +11,7 @@ public class ConstructorComun implements IConstructor {
     boolean tv;
     boolean internet;
     ContextoHabitacion estado;
+    Float costoDiario;
 
     public void setIdHabitacion(Integer idHabitacion) {
         this.idHabitacion = idHabitacion;
@@ -39,6 +40,10 @@ public class ConstructorComun implements IConstructor {
     public Habitacion getResultado() {
         return new Habitacion(this.idHabitacion, this.cantidadPersonas, this.minibar, this.tv, this.internet,
                 this.tipo);
+    }
+
+    public void setCostoDiario(Float costoDiario) {
+        this.costoDiario = costoDiario;
     }
 
 }

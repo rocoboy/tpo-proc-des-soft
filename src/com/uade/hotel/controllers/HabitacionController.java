@@ -35,7 +35,7 @@ public class HabitacionController {
         return -1;
     }
 
-    public Habitacion buscarHabitaciones(Integer idHabitacion) {
+    public Habitacion buscarHabitacion(Integer idHabitacion) {
         for (Habitacion habitacion : habitaciones) {
             if (Objects.equals(habitacion.obtenerIdHabitacion(), idHabitacion)) {
                 return habitacion;
@@ -45,11 +45,11 @@ public class HabitacionController {
     }
 
     public void reservarHabitacion(Integer idHabitacion) {
-        buscarHabitaciones(idHabitacion).cambiarEstado(new HabitacionStateOcupado());
+        buscarHabitacion(idHabitacion).cambiarEstado(new HabitacionStateOcupado());
     }
 
     public void liberarHabitacion(Integer idHabitacion) {
-        buscarHabitaciones(idHabitacion).cambiarEstado(new HabitacionStateDisponible());
+        buscarHabitacion(idHabitacion).cambiarEstado(new HabitacionStateDisponible());
     }
 
     public void generarReporte() {
@@ -99,6 +99,6 @@ public class HabitacionController {
     }
 
     public String obtenerEstadoHabitacion(int idHabitacion) {
-        return buscarHabitaciones(idHabitacion).obtenerEstado();
+        return buscarHabitacion(idHabitacion).obtenerEstado();
     }
 }

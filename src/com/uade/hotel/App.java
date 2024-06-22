@@ -127,10 +127,13 @@ public class App {
         Date checkIn = sdf.parse("2021-01-09");
         Date checkOut = sdf.parse("2021-01-13");
 
-        if ("Disponible".equals(habitacionController.buscarHabitaciones(idHabitacion).obtenerEstado())) {
-            habitacionController.buscarHabitaciones(idHabitacion).cambiarEstado(new HabitacionStateOcupado());
+        // calculamos cuanto sale la reserva
+        Float montoReserva = habitacionController.buscarHabitacion(idHabitacion).getCostoDiario();
+
+        if ("Disponible".equals(habitacionController.buscarHabitacion(idHabitacion).obtenerEstado())) {
+            habitacionController.buscarHabitacion(idHabitacion).cambiarEstado(new HabitacionStateOcupado());
             reservaController.reservarHabitacion(idHabitacion, idCliente, checkIn, checkOut, clientesReserva,
-                    medioDePago);
+                    medioDePago, montoReserva);
             reservaController.mostrarReservas();
         }
     }

@@ -9,6 +9,7 @@ public class DirectorHabitacion {
         constructor.setMinibar(true);
         constructor.setInternet(false);
         constructor.setTv(false);
+        constructor.setCostoDiario(22.0f);
     }
 
     public void construirSuite(IConstructor constructor) {
@@ -18,5 +19,6 @@ public class DirectorHabitacion {
         constructor.setMinibar(true);
         constructor.setInternet(true);
         constructor.setTv(true);
+        constructor.setCostoDiario(24.0f);
     }
 }
