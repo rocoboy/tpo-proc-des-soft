@@ -1,6 +1,6 @@
 package com.uade.hotel.models;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +16,8 @@ public class Reserva {
     public int idReserva;
     public int idCliente;
     public int idHabitacion;
-    public java.util.Date checkIn;
-    public java.util.Date checkOut;
+    public Date checkIn;
+    public Date checkOut;
     public List<DetalleCliente> huespedes;
     public String medioDePago;
     public Float montoReserva;
@@ -41,6 +41,7 @@ public class Reserva {
         this.huespedes = huespedes;
         this.medioDePago = medioDePago;
         this.montoReserva = montoReserva;
+
         this.sujeto = new Sujeto();
 
         this.estadoReserva = new ContextoReserva();
@@ -70,6 +71,10 @@ public class Reserva {
 
     public int obtenerIdHabitacion() {
         return this.idHabitacion;
+    }
+
+    public String obtenerEstado() {
+        return this.estadoReserva.consultarEstado();
     }
 
 }

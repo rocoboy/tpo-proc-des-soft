@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.uade.hotel.builders.room.ConstructorComun;
+import com.uade.hotel.builders.room.ConstructorSuite;
 import com.uade.hotel.builders.room.DirectorHabitacion;
 import com.uade.hotel.builders.room.Habitacion;
 import com.uade.hotel.builders.room.IConstructor;
@@ -23,6 +24,8 @@ public class HabitacionController {
         int idHabitacion = habitaciones.size() + 1;
 
         IConstructor constructorComun = new ConstructorComun();
+        IConstructor construictorSuite = new ConstructorSuite();
+
         DirectorHabitacion directorHabitacion = new DirectorHabitacion();
 
         if ("Comun".equals(tipo)) {
@@ -30,6 +33,13 @@ public class HabitacionController {
             Habitacion habitacionComun = constructorComun.getResultado();
             habitacionComun.setIdHabitacion(idHabitacion);
             habitaciones.add(habitacionComun);
+            return idHabitacion;
+        }
+        if ("Suite".equals(tipo)) {
+            directorHabitacion.construirSuite(construictorSuite);
+            Habitacion habitacionSuite = construictorSuite.getResultado();
+            habitacionSuite.setIdHabitacion(idHabitacion);
+            habitaciones.add(habitacionSuite);
             return idHabitacion;
         }
         return -1;
@@ -83,14 +93,16 @@ public class HabitacionController {
 
     public void mostrarHabitaciones() {
         for (Habitacion habitacion : habitaciones) {
-            System.out.println("id: " + habitacion.obtenerIdHabitacion() + "  Estado: " + habitacion.obtenerEstado());
+            System.out.println("id: " + habitacion.obtenerIdHabitacion() + "  Estado: " + habitacion.obtenerEstado()
+                    + " Tipo: " + habitacion.obtenerTipo());
         }
     }
 
     private void mostrarHabitaciones(List<Habitacion> habitaciones) {
         for (Habitacion habitacion : habitaciones) {
             System.out.println(
-                    "id: " + habitacion.obtenerIdHabitacion() + "  Estado: " + habitacion.obtenerEstado() + "");
+                    "id: " + habitacion.obtenerIdHabitacion() + "  Estado: " + habitacion.obtenerEstado() + " Tipo: "
+                            + habitacion.obtenerTipo());
         }
     }
 

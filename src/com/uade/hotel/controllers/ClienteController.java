@@ -62,4 +62,8 @@ public class ClienteController {
                     + cliente.apellido);
         }
     }
+
+    public void eliminarCliente(int dni) {
+        clientes.remove(encontrarCliente(dni));
+    }
 }

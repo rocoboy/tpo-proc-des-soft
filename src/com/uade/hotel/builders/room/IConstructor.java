@@ -15,4 +15,6 @@ public interface IConstructor {
     public Habitacion getResultado();
 
     public void setCostoDiario(Float costoDiario);
+
+    public void setTipo();
 }

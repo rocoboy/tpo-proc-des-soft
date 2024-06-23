@@ -23,6 +23,7 @@ public class Habitacion {
         this.tv = tv;
         this.internet = internet;
         this.estado = new ContextoHabitacion();
+        this.tipo = tipo;
     }
 
     public void cambiarEstado(IHabitacionState estado) {

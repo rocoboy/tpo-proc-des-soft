@@ -1,4 +1,4 @@
-package com.uade.hotel;
+package com.uade.hotel.backups;
 
 import java.util.Date;
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class App {
 
     public static void menuPrincipal() {
         System.out.println("Bienvenido, indique que desea hacer");
-        System.out.println("1. Cargar nuevo Cliente");
+        System.out.println("1. Carga de clientes");
         System.out.println("2. Cargar habitacion");
         System.out.println("3. Buscar habitacion");
         System.out.println("4. Reservar habitación");
@@ -100,6 +100,8 @@ public class App {
     public static void crearCliente(ClienteController clienteController) {
         clienteController.cargarCliente("Juan", "Perez", 1234567, "Email", "pepe@gmail.com", "11-2345-6789");
         clienteController.mostrarClientes();
+
+        // ahora vamos a intentar crear un cliente con el dni ya existente
     }
 
     public static void crearHabitacion(HabitacionController habitacionController) {
@@ -151,4 +153,5 @@ public class App {
         float nuevoPorcentaje = 0.3f;
         facturacionController.cambiarParametrosFacturacion(1, 12, 11, nuevoPorcentaje);
     }
+
 }

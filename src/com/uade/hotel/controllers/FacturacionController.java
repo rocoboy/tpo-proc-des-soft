@@ -64,4 +64,11 @@ public class FacturacionController {
                     + valorReserva.obtenerPorcentajeFinal());
         }
     }
+
+    public void mostrarFacturas() {
+        for (Factura factura : facturas) {
+            System.out.println("Id: " + factura.getIdFactura() + "idCliente:  " + factura.getIdCliente()
+                    + "idReserva:  " + factura.getIdReserva() + "Monto:  " + factura.getMonto());
+        }
+    }
 }

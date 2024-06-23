@@ -19,7 +19,9 @@ public class ReservaController {
     public void reservarHabitacion(int idHabitacion, int idCliente, java.util.Date checkIn, java.util.Date checkOut,
             List<DetalleCliente> clientesReserva, String medioDePago, Float montoReserva) {
 
-        Reserva nuevaReserva = new Reserva(idHabitacion, idCliente, idHabitacion, checkIn, checkOut, clientesReserva,
+        int idReserva = reservas.size() + 1;
+
+        Reserva nuevaReserva = new Reserva(idReserva, idCliente, idHabitacion, checkIn, checkOut, clientesReserva,
                 medioDePago, montoReserva);
         if (obtenerIdReserva(idHabitacion) == -1) {
             reservas.add(nuevaReserva);
@@ -59,7 +61,9 @@ public class ReservaController {
     public void mostrarReservas() {
         for (Reserva reserva : reservas) {
             System.out.println("id: " + reserva.idReserva + " clienteId: " + reserva.idCliente + " HabitacionId: "
-                    + reserva.idHabitacion + " Medio de pago:  " + reserva.medioDePago);
+                    + reserva.idHabitacion + " Medio de pago:  " + reserva.medioDePago + " Estado: "
+                    + reserva.obtenerEstado());
         }
     }
+
 }

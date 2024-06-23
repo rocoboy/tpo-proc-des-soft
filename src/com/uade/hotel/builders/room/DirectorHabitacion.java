@@ -10,6 +10,7 @@ public class DirectorHabitacion {
         constructor.setInternet(false);
         constructor.setTv(false);
         constructor.setCostoDiario(22.0f);
+        constructor.setTipo();
     }
 
     public void construirSuite(IConstructor constructor) {
@@ -20,5 +21,6 @@ public class DirectorHabitacion {
         constructor.setInternet(true);
         constructor.setTv(true);
         constructor.setCostoDiario(24.0f);
+        constructor.setTipo();
     }
 }
