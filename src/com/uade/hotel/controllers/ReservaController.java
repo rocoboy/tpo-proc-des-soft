@@ -60,9 +60,9 @@ public class ReservaController {
 
     public void mostrarReservas() {
         for (Reserva reserva : reservas) {
-            System.out.println("id: " + reserva.idReserva + " clienteId: " + reserva.idCliente + " HabitacionId: "
-                    + reserva.idHabitacion + " Medio de pago:  " + reserva.medioDePago + " Estado: "
-                    + reserva.obtenerEstado());
+            System.out.println("CheckIn: " + reserva.checkIn + " CheckOut: " + reserva.checkOut + " idCliente: "
+                    + reserva.idCliente + " Huespedes:  " + reserva.obtenerHuespedes() + " MedioPago: "
+                    + reserva.medioDePago + reserva.obtenerEstado());
         }
     }
 

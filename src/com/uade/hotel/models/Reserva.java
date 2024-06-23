@@ -77,4 +77,15 @@ public class Reserva {
         return this.estadoReserva.consultarEstado();
     }
 
+    public String obtenerHuespedes() {
+        String listaHuespedes = "";
+        for (DetalleCliente detalleCliente : huespedes) {
+            listaHuespedes = listaHuespedes.concat(detalleCliente.nombre);
+            if (huespedes.indexOf(detalleCliente) < huespedes.size() - 1) {
+                listaHuespedes = listaHuespedes.concat(", ");
+            }
+        }
+        return listaHuespedes;
+    }
+
 }

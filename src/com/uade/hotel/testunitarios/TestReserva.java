@@ -58,11 +58,13 @@ public class TestReserva {
     public void pagarReserva() {
         System.out.println("");
         System.out.println(
-                "003 ---- Creamos una reserva del usuario cuyo id es 1, y agregamos a juan y pagamos en efectivo, ademas se reserva por 5 dias y luego la pagamos");
+                "003 ---- Creamos una reserva del usuario cuyo id es 1, y agregamos a juan y a ricardo y pagamos en efectivo, ademas se reserva por 5 dias y luego la pagamos");
         ReservaController reservaController = new ReservaController();
         DetalleCliente detalleCliente = new DetalleCliente("Juan", "Perez", 123456);
+        DetalleCliente detalleCliente2 = new DetalleCliente("Ricardo", "Gonzalez", 122222);
         List<DetalleCliente> listaClientes = new ArrayList<>();
         listaClientes.add(detalleCliente);
+        listaClientes.add(detalleCliente2);
 
         @SuppressWarnings("deprecation")
         Date checkIn = new Date(124, 2, 22);
