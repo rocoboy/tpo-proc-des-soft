@@ -1,12 +1,11 @@
 package com.uade.hotel.models;
 
 import java.util.Date;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
-import com.uade.hotel.observers.IObservador;
 import com.uade.hotel.observers.ISujeto;
-import com.uade.hotel.observers.Sujeto;
+import com.uade.hotel.observers.SujetoReserva;
 import com.uade.hotel.states.estadoReserva.ContextoReserva;
 import com.uade.hotel.states.estadoReserva.IReservaState;
 import com.uade.hotel.states.estadoReserva.ReservaStatePendiente;
@@ -18,6 +17,7 @@ public class Reserva {
     public int idHabitacion;
     public Date checkIn;
     public Date checkOut;
+    public LocalDateTime fechaReserva;
     public List<DetalleCliente> huespedes;
     public String medioDePago;
     public Float montoReserva;
@@ -25,9 +25,8 @@ public class Reserva {
     // estado
     public ContextoReserva estadoReserva;
 
-    // observers
-    private ISujeto sujeto;
-    private List<IObservador> observadores = new ArrayList<>();
+    // observers para la reserva
+    private SujetoReserva sujeto;
 
     public Reserva(int idReserva, int idCliente, int idHabitacion, java.util.Date checkIn, java.util.Date checkOut,
             List<DetalleCliente> huespedes,
@@ -41,27 +40,21 @@ public class Reserva {
         this.huespedes = huespedes;
         this.medioDePago = medioDePago;
         this.montoReserva = montoReserva;
-
-        this.sujeto = new Sujeto();
+        this.fechaReserva = LocalDateTime.now();
 
         this.estadoReserva = new ContextoReserva();
         estadoReserva.cambiarEstado(new ReservaStatePendiente());
 
-        // se agrega un contador a la reserva para que esta pase a cancelada 24hs
-        // pasadas
-        // sin recibir un pago
-
-        // se configuran los boservers y el sujeto
+        this.sujeto = new SujetoReserva();
     }
 
-    public void setObserver(IObservador observador) {
-        observador.setSubject(this.sujeto);
-        observadores.add(observador);
+    public SujetoReserva obtenerSujeto() {
+        return this.sujeto;
     }
 
     public void cambiarEstadoReserva(IReservaState nuevoEstado) {
         this.estadoReserva.cambiarEstado(nuevoEstado);
-        // avisamos el cambio del estado
+        // cambiamos el estado y avisamos
         sujeto.postMessage(this.estadoReserva.consultarEstado());
     }
 
@@ -88,4 +81,11 @@ public class Reserva {
         return listaHuespedes;
     }
 
+    public LocalDateTime obtenerFechaReservacion() {
+        return this.fechaReserva;
+    }
+
+    public void cambiarDiasReserva(LocalDateTime fechaNueva) {
+        this.fechaReserva = fechaNueva;
+    }
 }

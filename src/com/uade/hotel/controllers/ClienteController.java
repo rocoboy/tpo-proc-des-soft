@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 import com.uade.hotel.models.Cliente;
+import com.uade.hotel.observers.IObservador;
+import com.uade.hotel.observers.ISujeto;
+import com.uade.hotel.observers.ObservadorReserva;
 
 public class ClienteController {
 
@@ -66,4 +69,13 @@ public class ClienteController {
     public void eliminarCliente(int dni) {
         clientes.remove(encontrarCliente(dni));
     }
+
+    public ObservadorReserva setearObserverCliente(int dniCliente, int idReserva) {
+        return encontrarCliente(dniCliente).agregarObservador(idReserva);
+    }
+
+    public void ObservadorReserva(int dni, int idReserva) {
+        System.out.println(encontrarCliente(dni).obtenerObservador(idReserva).obtenerIdReserva());
+    }
+
 }

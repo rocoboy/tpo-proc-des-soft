@@ -15,6 +15,6 @@ public class TestFacturacion {
     }
 
     public void cambiarValorPromo() {
-
+        //
     }
 }

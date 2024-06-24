@@ -22,13 +22,10 @@ public class HabitacionController {
 
     public int cargarHabitacion(String tipo) {
         int idHabitacion = habitaciones.size() + 1;
-
-        IConstructor constructorComun = new ConstructorComun();
-        IConstructor construictorSuite = new ConstructorSuite();
-
         DirectorHabitacion directorHabitacion = new DirectorHabitacion();
 
         if ("Comun".equals(tipo)) {
+            IConstructor constructorComun = new ConstructorComun();
             directorHabitacion.construirComun(constructorComun);
             Habitacion habitacionComun = constructorComun.getResultado();
             habitacionComun.setIdHabitacion(idHabitacion);
@@ -36,6 +33,7 @@ public class HabitacionController {
             return idHabitacion;
         }
         if ("Suite".equals(tipo)) {
+            IConstructor construictorSuite = new ConstructorSuite();
             directorHabitacion.construirSuite(construictorSuite);
             Habitacion habitacionSuite = construictorSuite.getResultado();
             habitacionSuite.setIdHabitacion(idHabitacion);
