@@ -13,4 +13,8 @@ public class TestFacturacion {
         facturacionController.generarFactura(1, 1, "MercadoPago", reglaPrecio);
         facturacionController.mostrarFacturas();
     }
+
+    public void cambiarValorPromo() {
+
+    }
 }

@@ -59,8 +59,8 @@ public class FacturacionController {
 
     public void mostrarValoresReservas() {
         for (ReglaPrecio valorReserva : valoresReservas) {
-            System.out.println("id: " + valorReserva.getId() + " Dias minimos: " + valorReserva.obtenerDiasMinimos()
-                    + " Maximos: " + valorReserva.obtenerDiasMaximos() + " porcentaje: "
+            System.out.println("id: " + valorReserva.getId() + " | Dias minimos: " + valorReserva.obtenerDiasMinimos()
+                    + " | Maximos: " + valorReserva.obtenerDiasMaximos() + " | porcentaje: "
                     + valorReserva.obtenerPorcentajeFinal());
         }
     }
