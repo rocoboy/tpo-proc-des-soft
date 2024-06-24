@@ -132,6 +132,7 @@ public class TestReserva {
         // le registramos un observador nuevo al cliente de la reserva y lo registramos
         // al sujeto de la reserva
         ObservadorReserva observadorReserva = clienteController.setearObserverCliente(1234567, 1);
+        System.out.println("holis");
 
         reservaController.obtenerSujetoReserva(1).register(observadorReserva);
 
