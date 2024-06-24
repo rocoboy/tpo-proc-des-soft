@@ -16,12 +16,14 @@ public class FacturacionController {
         this.valoresReservas = new ArrayList<>();
     }
 
-    public void generarFactura(int idCliente, int idReserva, String medioDePago, ReglaPrecio reglaPrecio) {
+    public boolean generarFactura(int idCliente, int idReserva, String medioDePago, ReglaPrecio reglaPrecio) {
         if (obtenerFactura(idReserva) == null) {
             facturas.add(new Factura(idReserva, idReserva, idCliente, medioDePago, idReserva, reglaPrecio));
+            return true;
         } else {
             System.out.println("ya existe una factura para la reserva");
         }
+        return false;
     }
 
     public Factura obtenerFactura(int idReserva) {
