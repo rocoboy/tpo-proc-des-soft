@@ -1,4 +1,6 @@
 package com.uade.hotel.builders.room;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.uade.hotel.states.estadohabitacion.ContextoHabitacion;
 
@@ -12,6 +14,11 @@ public class ConstructorComun implements IConstructor {
     boolean internet;
     ContextoHabitacion estado;
     Float costoDiario;
+    List<String> extras;
+
+    public ConstructorComun(){
+        this.extras = new ArrayList<>();
+    }
 
     public void setIdHabitacion(Integer idHabitacion) {
         this.idHabitacion = idHabitacion;
@@ -22,16 +29,23 @@ public class ConstructorComun implements IConstructor {
     }
 
     public void setMinibar(boolean miniBar) {
-        this.minibar = miniBar;
+        if(miniBar){
+            this.extras.add("minibar");
+        }
     }
 
     public void setTv(boolean tv) {
-        this.tv = tv;
+        if(tv){
+            this.extras.add("tv");
+        }
     }
 
     public void setInternet(boolean internet) {
-        this.internet = internet;
+        if(internet){
+            this.extras.add("internet");
+        }
     }
+
 
     public void setTipo() {
         this.tipo = "Comun";
@@ -39,7 +53,7 @@ public class ConstructorComun implements IConstructor {
 
     public Habitacion getResultado() {
         return new Habitacion(this.idHabitacion, this.cantidadPersonas, this.minibar, this.tv, this.internet,
-                this.tipo);
+                this.tipo, this.extras);
     }
 
     public void setCostoDiario(Float costoDiario) {
