@@ -1,12 +1,16 @@
 package com.uade.hotel.controllers;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.uade.hotel.models.DetalleCliente;
 import com.uade.hotel.models.Reserva;
 import com.uade.hotel.states.estadoReserva.ReservaStateCancelada;
 import com.uade.hotel.states.estadoReserva.ReservaStatePagada;
+import com.uade.hotel.states.estadoReserva.ReservaStatePendiente;
 
 public class ReservaController {
 
@@ -63,6 +67,18 @@ public class ReservaController {
             System.out.println("CheckIn: " + reserva.checkIn + " CheckOut: " + reserva.checkOut + " idCliente: "
                     + reserva.idCliente + " Huespedes:  " + reserva.obtenerHuespedes() + " MedioPago: "
                     + reserva.medioDePago + reserva.obtenerEstado());
+        }
+    }
+
+    public void analizarReservasPendientes() {
+        ReservaStatePendiente reservaPendiente = new ReservaStatePendiente();
+        LocalDateTime fechaHoy = LocalDateTime.now();
+        for (Reserva reserva : reservas) {
+            int diasDesdeReservacion = (int) ChronoUnit.HOURS.between(reserva.obtenerFechaReservacion(), fechaHoy);
+            if (diasDesdeReservacion > 24
+                    && Objects.equals(reserva.obtenerEstado(), reservaPendiente.consultarEstado())) {
+                reserva.cambiarEstadoReserva(new ReservaStateCancelada());
+            }
         }
     }
 

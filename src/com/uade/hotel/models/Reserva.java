@@ -1,6 +1,7 @@
 package com.uade.hotel.models;
 
 import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Reserva {
     public int idHabitacion;
     public Date checkIn;
     public Date checkOut;
+    public LocalDateTime fechaReserva;
     public List<DetalleCliente> huespedes;
     public String medioDePago;
     public Float montoReserva;
@@ -41,7 +43,7 @@ public class Reserva {
         this.huespedes = huespedes;
         this.medioDePago = medioDePago;
         this.montoReserva = montoReserva;
-
+        this.fechaReserva = LocalDateTime.now();
         this.sujeto = new Sujeto();
 
         this.estadoReserva = new ContextoReserva();
@@ -88,4 +90,11 @@ public class Reserva {
         return listaHuespedes;
     }
 
+    public LocalDateTime obtenerFechaReservacion() {
+        return this.fechaReserva;
+    }
+
+    public void cambiarDiasReserva(LocalDateTime fechaNueva) {
+        this.fechaReserva = fechaNueva;
+    }
 }

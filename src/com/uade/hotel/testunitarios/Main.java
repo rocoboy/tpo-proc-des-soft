@@ -72,5 +72,6 @@ public class Main {
         testReserva.crearReserva();
         testReserva.cancelarReserva();
         testReserva.pagarReserva();
+        testReserva.testearCancelacionAutomatica();
     }
 }

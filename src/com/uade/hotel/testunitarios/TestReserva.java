@@ -2,6 +2,7 @@ package com.uade.hotel.testunitarios;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -80,7 +81,27 @@ public class TestReserva {
         reservaController.mostrarReservas();
     }
 
-    public void cancelarPorFaltaDePago() {
-        // crear test
+    public void testearCancelacionAutomatica() {
+        System.out.println("");
+        System.out.println(
+                "004 ---- Creamos una reserva del usuario cuyo id es 1, y agregamos a juan y pagamos en efectivo, ademas se reserva por 5 dias: ");
+        ReservaController reservaController = new ReservaController();
+        DetalleCliente detalleCliente = new DetalleCliente("Juan", "Perez", 123456);
+        List<DetalleCliente> listaClientes = new ArrayList<>();
+        listaClientes.add(detalleCliente);
+
+        @SuppressWarnings("deprecation")
+        Date checkIn = new Date(124, 2, 22);
+        @SuppressWarnings("deprecation")
+        Date checkOut = new Date(124, 2, 22);
+
+        Float montoReserva = 22.49f;
+        reservaController.reservarHabitacion(1, 1, checkIn, checkOut, listaClientes, "Efectivo", montoReserva);
+        reservaController.mostrarReservas();
+
+        System.out.println("Cambiamos la fecha a dos dias antes de hoy y actualizamos");
+        reservaController.obtenerReserva(1).cambiarDiasReserva(LocalDateTime.now().minusDays(2));
+        reservaController.analizarReservasPendientes();
+        reservaController.mostrarReservas();
     }
 }
