@@ -91,4 +91,12 @@ public class ReservaController {
     public ObservadorReserva getObservadorReserva() {
         return this.observadorReserva;
     }
+
+    public void imprimirReservas() {
+        for (Reserva reserva : reservas) {
+            System.out.println("CheckIn: " + reserva.checkIn + " CheckOut: " + reserva.checkOut + " idCliente: "
+                    + reserva.idCliente + " Huespedes:  " + reserva.obtenerHuespedes() + " MedioPago: "
+                    + reserva.medioDePago + " Estado: " + reserva.obtenerEstado());
+        }
+    }
 }

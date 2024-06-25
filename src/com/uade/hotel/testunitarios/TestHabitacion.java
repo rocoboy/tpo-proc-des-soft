@@ -93,7 +93,7 @@ public class TestHabitacion {
 
         System.out.println("Creamos 10 habitaciones random");
         Random random = new Random();
-        for (int i = 0; i <= 10; i++) {
+        for (int i = 1; i < 11; i++) {
             int randomNum = random.nextInt(2);
             if (randomNum == 0) {
                 habitacionController.cargarHabitacion("Suite", random.nextInt(5) + 1);
@@ -126,6 +126,10 @@ public class TestHabitacion {
                     "Habitacion: " + habitacion.getIdHabitacion() + " Estado: " + habitacion.obtenerEstado());
             habitacion = estadoIterator.next();
         }
+        if (habitacion != null) {
+            System.out.println(
+                    "Habitacion: " + habitacion.getIdHabitacion() + " Estado: " + habitacion.obtenerEstado());
+        }
 
         System.out.println("Iteramos por tipo" + " Suite");
 
@@ -137,16 +141,51 @@ public class TestHabitacion {
                     "Habitacion: " + habitacion.getIdHabitacion() + " Tipo: " + habitacion.obtenerTipo());
             habitacion = tipoIterator.next();
         }
+        if (habitacion != null) {
+            System.out.println(
+                    "Habitacion: " + habitacion.getIdHabitacion() + " Tipo: " + habitacion.obtenerTipo());
+        }
+
+    }
+
+    public void generarReporte() {
+
+        System.out.println("");
+        System.out.println("008 ---- Generamos un reporte con todas las habitaciones sin filtrar");
+
+        HabitacionController habitacionController = new HabitacionController();
+        System.out.println("Creamos 10 habitaciones random");
+        Random random = new Random();
+        for (int i = 1; i < 11; i++) {
+            int randomNum = random.nextInt(2);
+            if (randomNum == 0) {
+                habitacionController.cargarHabitacion("Suite", random.nextInt(5) + 1);
+            } else {
+                habitacionController.cargarHabitacion("Comun", random.nextInt(5) + 1);
+            }
+        }
+
+        IHabitacionIterator iteratorEstado = habitacionController.createEstadoIterator("Disponible");
+        while (iteratorEstado.hasNext()) {
+            Habitacion habitacion = iteratorEstado.next();
+            // Cambiamos el estado de alguna habitación de manera random
+            if (random.nextInt(2) == 0) {
+                habitacionController.reservarHabitacion(habitacion.getIdHabitacion());
+
+            }
+        }
 
         IHabitacionIterator habitacionIterator = habitacionController.createHabitacionIterator();
-        System.out.println("Iteramos por todas las habitaciones");
-        System.out.println("Habitaciones:");
-        habitacion = habitacionIterator.next();
+        System.out.println("Reporte Habitaciones Habitaciones:");
+        Habitacion habitacion = habitacionIterator.next();
         while (habitacionIterator.hasNext()) {
             System.out.println("Habitacion: " + habitacion.getIdHabitacion() + " Tipo: " + habitacion.obtenerTipo()
                     + " Estado: " + habitacion.obtenerEstado());
             habitacion = habitacionIterator.next();
         }
-
+        if (habitacion != null) {
+            System.out.println("Habitacion: " + habitacion.getIdHabitacion() + " Tipo: " + habitacion.obtenerTipo()
+                    + " Estado: " + habitacion.obtenerEstado());
+        }
     }
 }

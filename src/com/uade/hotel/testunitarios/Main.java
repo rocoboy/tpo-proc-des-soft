@@ -73,6 +73,7 @@ public class Main {
         testHabitacion.liberarHabitacion();
         testHabitacion.filtrarHabitacionesPorTipo();
         testHabitacion.iterarHabitaciones();
+        testHabitacion.generarReporte();
     }
 
     public static void testearReserva() {

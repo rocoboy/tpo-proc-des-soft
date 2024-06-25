@@ -13,12 +13,15 @@ public class EstadoIterator implements IHabitacionIterator {
         this.habitaciones = habitaciones;
         this.estado = estado;
         this.position = 0;
+
+        while (!this.habitaciones.get(position).obtenerEstado().equals(estado) && position < habitaciones.size()) {
+            position++;
+        }
     }
 
     @Override
     public boolean hasNext() {
         while (position < habitaciones.size()) {
-
             if (habitaciones.get(position).obtenerEstado().equals(estado)) {
                 return true;
             }

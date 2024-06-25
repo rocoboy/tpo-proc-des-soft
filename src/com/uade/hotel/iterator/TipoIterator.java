@@ -13,6 +13,10 @@ public class TipoIterator implements IHabitacionIterator {
         this.habitaciones = habitaciones;
         this.tipo = tipo;
         this.position = 0;
+
+        while (!this.habitaciones.get(position).obtenerTipo().equals(tipo) && position < habitaciones.size()) {
+            position++;
+        }
     }
 
     @Override
