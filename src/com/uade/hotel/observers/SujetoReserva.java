@@ -4,29 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Esta clase notifica a sus observadores de cada cambio de su estado
-public class Sujeto implements ISujeto {
+public class SujetoReserva {
 
-    private List<IObservador> observadores = null;
+    private List<ObservadorReserva> observadores = null;
     private String mensaje;
 
-    public Sujeto() {
+    public SujetoReserva() {
         observadores = new ArrayList<>();
     }
 
-    @Override
-    public void register(IObservador observador) {
-        observadores.add(observador);
+    public void register(ObservadorReserva observadorReserva) {
+        observadores.add(observadorReserva);
     }
 
-    @Override
-    public void unregister(IObservador observador) {
+    public void unregister(ObservadorReserva observador) {
         observadores.remove(observador);
     }
 
-    @Override
     public void notifyObservers() {
         if (observadores != null && !observadores.isEmpty()) {
-            for (IObservador observer : observadores) {
+            for (ObservadorReserva observer : observadores) {
                 observer.update(mensaje);
             }
         } else {
@@ -34,12 +31,10 @@ public class Sujeto implements ISujeto {
         }
     }
 
-    @Override
     public Object getUpdate() {
         return mensaje;
     }
 
-    @Override
     public void postMessage(String mensaje) {
         System.out.println("Tema : " + mensaje);
         this.mensaje = mensaje;

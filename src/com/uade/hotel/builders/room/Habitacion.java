@@ -14,9 +14,10 @@ public class Habitacion {
     boolean internet;
     ContextoHabitacion estado;
     Float costoDiario;
+    List<String> extras;
 
     public Habitacion(Integer idHabitacion, Integer cantidadPersonas, Boolean minibar, boolean tv, boolean internet,
-            String tipo) {
+            String tipo, List<String> extras) {
         this.idHabitacion = idHabitacion;
         this.cantidadPersonas = cantidadPersonas;
         this.minibar = minibar;
@@ -24,6 +25,7 @@ public class Habitacion {
         this.internet = internet;
         this.estado = new ContextoHabitacion();
         this.tipo = tipo;
+        this.extras = extras;
     }
 
     public void cambiarEstado(IHabitacionState estado) {
@@ -65,5 +67,9 @@ public class Habitacion {
 
     public Float getCostoDiario() {
         return this.costoDiario;
+    }
+
+    public List<String> getExtras() {
+        return this.extras;
     }
 }

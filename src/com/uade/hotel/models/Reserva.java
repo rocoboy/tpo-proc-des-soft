@@ -2,12 +2,10 @@ package com.uade.hotel.models;
 
 import java.util.Date;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.uade.hotel.observers.IObservador;
 import com.uade.hotel.observers.ISujeto;
-import com.uade.hotel.observers.Sujeto;
+import com.uade.hotel.observers.SujetoReserva;
 import com.uade.hotel.states.estadoReserva.ContextoReserva;
 import com.uade.hotel.states.estadoReserva.IReservaState;
 import com.uade.hotel.states.estadoReserva.ReservaStatePendiente;
@@ -27,9 +25,8 @@ public class Reserva {
     // estado
     public ContextoReserva estadoReserva;
 
-    // observers
-    private ISujeto sujeto;
-    private List<IObservador> observadores = new ArrayList<>();
+    // observers para la reserva
+    private SujetoReserva sujeto;
 
     public Reserva(int idReserva, int idCliente, int idHabitacion, java.util.Date checkIn, java.util.Date checkOut,
             List<DetalleCliente> huespedes,
@@ -44,26 +41,20 @@ public class Reserva {
         this.medioDePago = medioDePago;
         this.montoReserva = montoReserva;
         this.fechaReserva = LocalDateTime.now();
-        this.sujeto = new Sujeto();
 
         this.estadoReserva = new ContextoReserva();
         estadoReserva.cambiarEstado(new ReservaStatePendiente());
 
-        // se agrega un contador a la reserva para que esta pase a cancelada 24hs
-        // pasadas
-        // sin recibir un pago
-
-        // se configuran los boservers y el sujeto
+        this.sujeto = new SujetoReserva();
     }
 
-    public void setObserver(IObservador observador) {
-        observador.setSubject(this.sujeto);
-        observadores.add(observador);
+    public SujetoReserva obtenerSujeto() {
+        return this.sujeto;
     }
 
     public void cambiarEstadoReserva(IReservaState nuevoEstado) {
         this.estadoReserva.cambiarEstado(nuevoEstado);
-        // avisamos el cambio del estado
+        // cambiamos el estado y avisamos
         sujeto.postMessage(this.estadoReserva.consultarEstado());
     }
 

@@ -9,5 +9,6 @@ public interface IObservador {
     void update(String message);
 
     // M�todo para subscribir el observador a un sujeto
-    void setSubject(ISujeto subject);
+    void setSubject(SujetoReserva subject);
+
 }

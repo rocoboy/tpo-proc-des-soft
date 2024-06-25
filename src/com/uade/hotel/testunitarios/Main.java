@@ -14,6 +14,8 @@ public class Main {
             rol = scanner.nextInt();
 
             switch (rol) {
+                case 0:
+                    System.out.println("Saliendo...");
                 case 1:
                     testearClientes();
                     break;
@@ -23,8 +25,9 @@ public class Main {
                 case 3:
                     testearReserva();
                     break;
-                case 0:
-                    System.out.println("Saliendo...");
+
+                case 4:
+                    testearFacturacion();
                     break;
                 default:
                     break;
@@ -46,6 +49,7 @@ public class Main {
         System.out.println("1. Ejecutar tests de clientes");
         System.out.println("2. Ejecutar tests de habitación");
         System.out.println("3. Ejecutar tests de reserva");
+        System.out.println("4. Ejecutar tests de facturacion");
         System.out.println("0. Salir");
     }
 
@@ -77,5 +81,11 @@ public class Main {
         testReserva.cancelarReserva();
         testReserva.pagarReserva();
         testReserva.testearCancelacionAutomatica();
+        testReserva.testearObserverReserva();
+    }
+
+    public static void testearFacturacion() {
+        TestFacturacion testFacturacion = new TestFacturacion();
+        testFacturacion.realizarPago();
     }
 }

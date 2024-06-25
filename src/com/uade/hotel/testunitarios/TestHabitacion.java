@@ -3,6 +3,9 @@ package com.uade.hotel.testunitarios;
 import java.util.Random;
 
 import com.uade.hotel.builders.room.Habitacion;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.uade.hotel.controllers.HabitacionController;
 import com.uade.hotel.iterator.IHabitacionIterator;
 
@@ -69,11 +72,17 @@ public class TestHabitacion {
         habitacionController.cargarHabitacion("Suite", 4);
         habitacionController.cargarHabitacion("Comun", 2);
         habitacionController.mostrarHabitaciones();
-        System.out.println("Ahora vemos las habitacioens filtradas por disponible y Suite");
-        habitacionController.buscarHabitaciones("Suite", 1);
-        habitacionController.mostrarHabitaciones();
-        System.out.println("Ahora vemos las habitacioens filtradas por disponible y Comun");
-        habitacionController.buscarHabitaciones("Comun", 1);
+
+        System.out.println("Ahora vemos las habitaciones filtradas por disponible y Suite con Wifi");
+        List<String> extras = new ArrayList<>();
+        extras.add("internet");
+        habitacionController.buscarHabitaciones("Suite", 1, extras);
+
+        System.out.println("Ahora vemos las habitaciones filtradas por disponible y Comun, con minibar y tv");
+        extras.clear();
+        extras.add("tv");
+        extras.add("minibar");
+        habitacionController.buscarHabitaciones("Comun", 1, extras);
     }
 
     // lets use the Iterator pattern to show the rooms
