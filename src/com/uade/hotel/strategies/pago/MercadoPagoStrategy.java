@@ -2,7 +2,7 @@ package com.uade.hotel.strategies.pago;
 
 public class MercadoPagoStrategy {
 
-    public void realizarPago() {
-        System.out.println("pagaste con mercadopago");
+    public static void efectuarPago() {
+        System.out.println("Pagaste con Mercadopago");
     }
 }

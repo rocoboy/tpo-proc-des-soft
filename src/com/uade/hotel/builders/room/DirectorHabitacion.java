@@ -2,10 +2,12 @@ package com.uade.hotel.builders.room;
 
 public class DirectorHabitacion {
 
-    public void construirComun(IConstructor constructor) {
+    // The ID and amount of people are passed on by parameters
 
-        constructor.setIdHabitacion(0);
-        constructor.setCantidadPersonas(4);
+    public void construirComun(IConstructor constructor, int IdHabitacion, int cantPersonas) {
+
+        constructor.setIdHabitacion(IdHabitacion);
+        constructor.setCantidadPersonas(cantPersonas);
         constructor.setMinibar(true);
         constructor.setInternet(false);
         constructor.setTv(false);
@@ -13,10 +15,12 @@ public class DirectorHabitacion {
         constructor.setTipo();
     }
 
-    public void construirSuite(IConstructor constructor) {
+    // The ID and amount of people are passed on by parameters
 
-        constructor.setIdHabitacion(0);
-        constructor.setCantidadPersonas(2);
+    public void construirSuite(IConstructor constructor, int IdHabitacion, int cantPersonas) {
+
+        constructor.setIdHabitacion(IdHabitacion);
+        constructor.setCantidadPersonas(cantPersonas);
         constructor.setMinibar(true);
         constructor.setInternet(true);
         constructor.setTv(true);

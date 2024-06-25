@@ -23,6 +23,9 @@ public class Main {
                 case 3:
                     testearReserva();
                     break;
+                case 0:
+                    System.out.println("Saliendo...");
+                    break;
                 default:
                     break;
             }
@@ -65,6 +68,7 @@ public class Main {
         testHabitacion.ocuparHabitacion();
         testHabitacion.liberarHabitacion();
         testHabitacion.filtrarHabitacionesPorTipo();
+        testHabitacion.iterarHabitaciones();
     }
 
     public static void testearReserva() {
