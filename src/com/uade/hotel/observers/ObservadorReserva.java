@@ -1,40 +1,33 @@
 package com.uade.hotel.observers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.uade.hotel.models.Reserva;
+
 public class ObservadorReserva {
-    int idReserva;
-    String nombreCliente;
-    SujetoReserva sujetoSubscripto;
 
-    public ObservadorReserva(int idReserva, String nombreCliente) {
-        this.idReserva = idReserva;
-        this.nombreCliente = nombreCliente;
+    public List<INotificado> notificados;
+
+    public ObservadorReserva() {
+        this.notificados = new ArrayList<>();
     }
 
-    public void update() {
-        String nuevoMensaje = (String) sujetoSubscripto.getUpdate();
-        if (nuevoMensaje == null) {
-            System.out.println(idReserva + " no hay nuevos mensajes");
-        } else {
-            System.out.println("Hola! " + nombreCliente + ", tu reserva con id: " + idReserva
-                    + " ha cambiado su estado a: " + nuevoMensaje);
+    public void subscribir(INotificado notificado) {
+        notificados.add(notificado);
+    }
+
+    public void desubscribir(INotificado notificado) {
+        notificados.remove(notificado);
+    }
+
+    public void notificar(Reserva reserva, String mensaje) {
+        for (INotificado notificado : notificados) {
+            if (notificado != null) {
+                notificado.notificar(reserva, mensaje);
+            }
+
         }
-    }
-
-    public void update(String nuevoMensaje) {
-        if (nuevoMensaje == null) {
-            System.out.println(idReserva + " No hay nuevos mensajes");
-        } else {
-            System.out.println("Hola! " + nombreCliente + ", tu reserva con id: " + idReserva
-                    + " ha cambiado su estado a: " + nuevoMensaje);
-        }
-    }
-
-    public void setSubject(SujetoReserva sujeto) {
-        sujetoSubscripto = sujeto;
-    }
-
-    public int obtenerIdReserva() {
-        return this.idReserva;
     }
 
 }

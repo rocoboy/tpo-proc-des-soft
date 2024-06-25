@@ -110,8 +110,8 @@ public class TestHabitacion {
             Habitacion habitacion = iteratorEstado.next();
             // Cambiamos el estado de alguna habitación de manera random
             if (random.nextInt(2) == 0) {
-                habitacionController.reservarHabitacion(habitacion.obtenerIdHabitacion());
-                System.out.println("Habitacion " + habitacion.obtenerIdHabitacion() + " reservada");
+                habitacionController.reservarHabitacion(habitacion.getIdHabitacion());
+                System.out.println("Habitacion " + habitacion.getIdHabitacion() + " reservada");
             }
         }
 
@@ -123,7 +123,7 @@ public class TestHabitacion {
         Habitacion habitacion = estadoIterator.next();
         while (estadoIterator.hasNext()) {
             System.out.println(
-                    "Habitacion: " + habitacion.obtenerIdHabitacion() + " Estado: " + habitacion.obtenerEstado());
+                    "Habitacion: " + habitacion.getIdHabitacion() + " Estado: " + habitacion.obtenerEstado());
             habitacion = estadoIterator.next();
         }
 
@@ -134,7 +134,7 @@ public class TestHabitacion {
         habitacion = tipoIterator.next();
         while (tipoIterator.hasNext()) {
             System.out.println(
-                    "Habitacion: " + habitacion.obtenerIdHabitacion() + " Tipo: " + habitacion.obtenerTipo());
+                    "Habitacion: " + habitacion.getIdHabitacion() + " Tipo: " + habitacion.obtenerTipo());
             habitacion = tipoIterator.next();
         }
 
@@ -143,7 +143,7 @@ public class TestHabitacion {
         System.out.println("Habitaciones:");
         habitacion = habitacionIterator.next();
         while (habitacionIterator.hasNext()) {
-            System.out.println("Habitacion: " + habitacion.obtenerIdHabitacion() + " Tipo: " + habitacion.obtenerTipo()
+            System.out.println("Habitacion: " + habitacion.getIdHabitacion() + " Tipo: " + habitacion.obtenerTipo()
                     + " Estado: " + habitacion.obtenerEstado());
             habitacion = habitacionIterator.next();
         }

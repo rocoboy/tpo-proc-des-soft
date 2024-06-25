@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 import com.uade.hotel.models.Cliente;
-import com.uade.hotel.observers.IObservador;
-import com.uade.hotel.observers.ISujeto;
-import com.uade.hotel.observers.ObservadorReserva;
 
 public class ClienteController {
 
@@ -17,15 +14,21 @@ public class ClienteController {
         this.clientes = new ArrayList<>();
     }
 
-    public void cargarCliente(String nombre, String apellido, int dni, String preferencias, String email,
+    public List<Cliente> getClientes() {
+        return this.clientes;
+    }
+
+    public Cliente cargarCliente(String nombre, String apellido, int dni, String preferencias, String email,
             String telefono) {
 
         if (encontrarCliente(dni) == null) {
             int idCliente = clientes.size() + 1;
             Cliente cliente = new Cliente(idCliente, nombre, apellido, dni, preferencias, email, telefono);
             this.clientes.add(cliente);
+            return cliente;
         } else {
             System.out.println("el cliente ya existe");
+            return null;
         }
     }
 
@@ -44,7 +47,7 @@ public class ClienteController {
 
     public Cliente encontrarCliente(int dni) {
         for (Cliente cliente : clientes) {
-            if (Objects.equals(cliente.dni, dni)) {
+            if (Objects.equals(cliente.detalleCliente.dni, dni)) {
                 return cliente;
             }
         }
@@ -52,30 +55,23 @@ public class ClienteController {
     }
 
     public void cambiarPreferencia(int idCliente, String nuevaPreferencia) {
-        clientes.get(encontrarIndexCliente(idCliente)).preferenciaContacto = nuevaPreferencia;
+        clientes.get(encontrarIndexCliente(idCliente)).detalleCliente.preferenciaContacto = nuevaPreferencia;
     }
 
     public String obtenerPreferencia(int dni) {
-        return encontrarCliente(dni).preferenciaContacto;
+        return encontrarCliente(dni).detalleCliente.preferenciaContacto;
     }
 
     public void mostrarClientes() {
         for (Cliente cliente : clientes) {
-            System.out.println("Cliente Nro: " + cliente.idCliente + "   Nombre: " + cliente.nombre + "   Apellido: "
-                    + cliente.apellido);
+            System.out.println("Cliente Nro: " + cliente.idCliente + "   Nombre: " + cliente.detalleCliente.nombre
+                    + "   Apellido: "
+                    + cliente.detalleCliente.apellido);
         }
     }
 
     public void eliminarCliente(int dni) {
         clientes.remove(encontrarCliente(dni));
-    }
-
-    public ObservadorReserva setearObserverCliente(int dniCliente, int idReserva) {
-        return encontrarCliente(dniCliente).agregarObservador(idReserva);
-    }
-
-    public void ObservadorReserva(int dni, int idReserva) {
-        System.out.println(encontrarCliente(dni).obtenerObservador(idReserva).obtenerIdReserva());
     }
 
 }

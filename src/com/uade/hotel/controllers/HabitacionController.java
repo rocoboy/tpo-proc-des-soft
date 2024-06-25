@@ -24,6 +24,10 @@ public class HabitacionController {
         habitaciones = new ArrayList<>();
     }
 
+    public List<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+
     public int cargarHabitacion(String tipo, int cantPersonas) {
         int idHabitacion = habitaciones.size() + 1;
         DirectorHabitacion directorHabitacion = new DirectorHabitacion();
@@ -49,7 +53,7 @@ public class HabitacionController {
 
     public Habitacion buscarHabitacion(Integer idHabitacion) {
         for (Habitacion habitacion : habitaciones) {
-            if (Objects.equals(habitacion.obtenerIdHabitacion(), idHabitacion)) {
+            if (Objects.equals(habitacion.getIdHabitacion(), idHabitacion)) {
                 return habitacion;
             }
         }
@@ -84,7 +88,7 @@ public class HabitacionController {
     public void generarReporte() {
         for (Habitacion habitacion : habitaciones) {
             System.out.println(
-                    "Habitacion " + habitacion.obtenerIdHabitacion() + "  Estado " + habitacion.obtenerEstado());
+                    "Habitacion " + habitacion.getIdHabitacion() + "  Estado " + habitacion.obtenerEstado());
         }
     }
 
@@ -114,7 +118,7 @@ public class HabitacionController {
 
     public void mostrarHabitaciones() {
         for (Habitacion habitacion : habitaciones) {
-            System.out.println("id: " + habitacion.obtenerIdHabitacion() + "  Estado: " + habitacion.obtenerEstado()
+            System.out.println("id: " + habitacion.getIdHabitacion() + "  Estado: " + habitacion.obtenerEstado()
                     + " Tipo: " + habitacion.obtenerTipo() + " Extras: " + habitacion.getExtras());
         }
     }
@@ -122,7 +126,7 @@ public class HabitacionController {
     private void mostrarHabitaciones(List<Habitacion> habitaciones) {
         for (Habitacion habitacion : habitaciones) {
             System.out.println(
-                    "id: " + habitacion.obtenerIdHabitacion() + "  Estado: " + habitacion.obtenerEstado() + " Tipo: "
+                    "id: " + habitacion.getIdHabitacion() + "  Estado: " + habitacion.obtenerEstado() + " Tipo: "
                             + habitacion.obtenerTipo() + " Extras: " + habitacion.getExtras());
         }
     }

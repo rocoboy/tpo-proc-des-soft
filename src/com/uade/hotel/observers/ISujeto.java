@@ -2,10 +2,10 @@ package com.uade.hotel.observers;
 
 public interface ISujeto {
     // Registro de un observador
-    void register(IObservador observador);
+    void register(INotificado observador);
 
     // Cancelaci�n de registro de un observador
-    void unregister(IObservador observador);
+    void unregister(INotificado observador);
 
     // Notificar a todos los observadores de un cambio de estado
     void notifyObservers();

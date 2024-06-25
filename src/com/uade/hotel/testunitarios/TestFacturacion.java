@@ -7,9 +7,11 @@ import java.util.List;
 import com.uade.hotel.controllers.ClienteController;
 import com.uade.hotel.controllers.FacturacionController;
 import com.uade.hotel.controllers.ReservaController;
+import com.uade.hotel.facade.FacadeContabilidad;
+import com.uade.hotel.facade.FacadeMarketing;
+import com.uade.hotel.models.Cliente;
 import com.uade.hotel.models.DetalleCliente;
 import com.uade.hotel.models.ReglaPrecio;
-import com.uade.hotel.observers.ObservadorReserva;
 import com.uade.hotel.states.estadoReserva.ReservaStatePagada;
 
 public class TestFacturacion {
@@ -20,9 +22,20 @@ public class TestFacturacion {
 
         // creamos la reserva
         ReservaController reservaController = new ReservaController();
-        DetalleCliente detalleCliente = new DetalleCliente("Juan", "Perez", 123456);
-        List<DetalleCliente> listaClientes = new ArrayList<>();
-        listaClientes.add(detalleCliente);
+        ClienteController clienteController = new ClienteController();
+        FacturacionController facturacionController = new FacturacionController();
+        clienteController.cargarCliente("Juan", "Perez", 1234567, "Email", "juanperez@gmail.com", "11-2345-6789");
+        DetalleCliente detalleMaria = new DetalleCliente("Maria", "Gomez", 9876543, "Email", "mariagomez",
+                "11-2345-6789");
+        DetalleCliente detallePedro = new DetalleCliente("Pedro", "Gonzalez", 5555555, "Email", "pedrogonzalez",
+                "11-2345-6789");
+
+        List<DetalleCliente> clientes = new ArrayList<>();
+        Cliente juan = clienteController.encontrarCliente(1234567);
+
+        clientes.add(juan.detalleCliente);
+        clientes.add(detalleMaria);
+        clientes.add(detallePedro);
 
         @SuppressWarnings("deprecation")
         Date checkIn = new Date(124, 2, 22);
@@ -30,23 +43,22 @@ public class TestFacturacion {
         Date checkOut = new Date(124, 2, 22);
 
         Float montoReserva = 22.49f;
-        reservaController.reservarHabitacion(1, 1, checkIn, checkOut, listaClientes, "Efectivo", montoReserva);
+        reservaController.reservarHabitacion(1, 1, checkIn, checkOut, clientes, "Efectivo", montoReserva);
+        reservaController.getObservadorReserva().subscribir(new FacadeContabilidad());
+        reservaController.getObservadorReserva().subscribir(new FacadeMarketing());
 
         // le registramos un observador nuevo al cliente de la reserva y lo registramos
         // al sujeto de la reserva
-        ClienteController clienteController = new ClienteController();
+        reservaController.getObservadorReserva().subscribir(clienteController.encontrarCliente(1234567));
         clienteController.cargarCliente("Juan", "Perez", 1234567, "Email", "pepe@gmail.com", "11-2345-6789");
-        clienteController.mostrarClientes();
-        ObservadorReserva observadorReserva = clienteController.setearObserverCliente(1234567, 1);
-        System.out.println("holis");
 
-        reservaController.obtenerSujetoReserva(1).register(observadorReserva);
+        clienteController.mostrarClientes();
 
         // ya tenemos cliente y reserva creamos la factura
-        FacturacionController facturacionController = new FacturacionController();
         ReglaPrecio reglaPrecio = new ReglaPrecio(1, 2, 3, 0.7f);
         if (facturacionController.generarFactura(1, 1, "MercadoPago", reglaPrecio)) {
-            reservaController.obtenerReserva(1).cambiarEstadoReserva(new ReservaStatePagada());
+            reservaController.obtenerReserva(1).cambiarEstadoReserva(new ReservaStatePagada(),
+                    reservaController.getObservadorReserva());
         }
     }
 

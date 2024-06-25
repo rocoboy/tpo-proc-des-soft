@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import com.uade.hotel.models.DetalleCliente;
 import com.uade.hotel.models.Reserva;
-import com.uade.hotel.observers.SujetoReserva;
+import com.uade.hotel.observers.ObservadorReserva;
 import com.uade.hotel.states.estadoReserva.ReservaStateCancelada;
 import com.uade.hotel.states.estadoReserva.ReservaStatePagada;
 import com.uade.hotel.states.estadoReserva.ReservaStatePendiente;
@@ -16,9 +16,11 @@ import com.uade.hotel.states.estadoReserva.ReservaStatePendiente;
 public class ReservaController {
 
     List<Reserva> reservas;
+    ObservadorReserva observadorReserva;
 
     public ReservaController() {
         this.reservas = new ArrayList<>();
+        this.observadorReserva = new ObservadorReserva();
     }
 
     public void reservarHabitacion(int idHabitacion, int idCliente, java.util.Date checkIn, java.util.Date checkOut,
@@ -37,11 +39,11 @@ public class ReservaController {
     }
 
     public void pagarReserva(int idReserva) {
-        obtenerReserva(idReserva).cambiarEstadoReserva(new ReservaStatePagada());
+        obtenerReserva(idReserva).cambiarEstadoReserva(new ReservaStatePagada(), observadorReserva);
     }
 
     public void cancelarReserva(int idReserva) {
-        obtenerReserva(idReserva).cambiarEstadoReserva(new ReservaStateCancelada());
+        obtenerReserva(idReserva).cambiarEstadoReserva(new ReservaStateCancelada(), observadorReserva);
     }
 
     public int obtenerIdReserva(int idHabitacion) {
@@ -77,13 +79,16 @@ public class ReservaController {
             int diasDesdeReservacion = (int) ChronoUnit.HOURS.between(reserva.obtenerFechaReservacion(), fechaHoy);
             if (diasDesdeReservacion > 24
                     && Objects.equals(reserva.obtenerEstado(), reservaPendiente.consultarEstado())) {
-                reserva.cambiarEstadoReserva(new ReservaStateCancelada());
+                reserva.cambiarEstadoReserva(new ReservaStateCancelada(), observadorReserva);
             }
         }
     }
 
-    public SujetoReserva obtenerSujetoReserva(int idReserva) {
-        return obtenerReserva(idReserva).obtenerSujeto();
+    public void setObservadorReserva(ObservadorReserva observadorReserva) {
+        this.observadorReserva = observadorReserva;
     }
 
+    public ObservadorReserva getObservadorReserva() {
+        return this.observadorReserva;
+    }
 }

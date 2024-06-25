@@ -32,7 +32,7 @@ public class Habitacion {
         this.estado.cambiarEstado(estado);
     }
 
-    public void getDetalles() {
+    public void imprimirHabitacion() {
         System.out.println("Detalles de la habitación");
         System.out.printf("Cantidad de Personas: %s %n", cantidadPersonas);
         System.out.printf("Minibar: %s %n", minibar);
@@ -45,7 +45,7 @@ public class Habitacion {
         this.idHabitacion = idHabitacion;
     }
 
-    public Integer obtenerIdHabitacion() {
+    public Integer getIdHabitacion() {
         return this.idHabitacion;
     }
 

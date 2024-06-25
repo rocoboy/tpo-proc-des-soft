@@ -4,8 +4,7 @@ import java.util.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.uade.hotel.observers.ISujeto;
-import com.uade.hotel.observers.SujetoReserva;
+import com.uade.hotel.observers.ObservadorReserva;
 import com.uade.hotel.states.estadoReserva.ContextoReserva;
 import com.uade.hotel.states.estadoReserva.IReservaState;
 import com.uade.hotel.states.estadoReserva.ReservaStatePendiente;
@@ -25,9 +24,6 @@ public class Reserva {
     // estado
     public ContextoReserva estadoReserva;
 
-    // observers para la reserva
-    private SujetoReserva sujeto;
-
     public Reserva(int idReserva, int idCliente, int idHabitacion, java.util.Date checkIn, java.util.Date checkOut,
             List<DetalleCliente> huespedes,
             String medioDePago, Float montoReserva) {
@@ -41,21 +37,15 @@ public class Reserva {
         this.medioDePago = medioDePago;
         this.montoReserva = montoReserva;
         this.fechaReserva = LocalDateTime.now();
-
         this.estadoReserva = new ContextoReserva();
         estadoReserva.cambiarEstado(new ReservaStatePendiente());
 
-        this.sujeto = new SujetoReserva();
     }
 
-    public SujetoReserva obtenerSujeto() {
-        return this.sujeto;
-    }
-
-    public void cambiarEstadoReserva(IReservaState nuevoEstado) {
+    public void cambiarEstadoReserva(IReservaState nuevoEstado, ObservadorReserva observador) {
         this.estadoReserva.cambiarEstado(nuevoEstado);
         // cambiamos el estado y avisamos
-        sujeto.postMessage(this.estadoReserva.consultarEstado());
+        observador.notificar(this, "Se cambio el estado de la reserva");
     }
 
     public void establecerMonto(Float montoReserva) {
@@ -87,5 +77,11 @@ public class Reserva {
 
     public void cambiarDiasReserva(LocalDateTime fechaNueva) {
         this.fechaReserva = fechaNueva;
+    }
+
+    public void imprimirReserva() {
+        System.out.println("CheckIn: " + this.checkIn + " CheckOut: " + this.checkOut + " idCliente: " + this.idCliente
+                + " Huespedes:  " + this.obtenerHuespedes() + " MedioPago: " + this.medioDePago + " Estado: "
+                + this.obtenerEstado());
     }
 }
