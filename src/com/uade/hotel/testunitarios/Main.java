@@ -87,5 +87,6 @@ public class Main {
     public static void testearFacturacion() {
         TestFacturacion testFacturacion = new TestFacturacion();
         testFacturacion.realizarPago();
+        testFacturacion.cambiarValorPromo();
     }
 }

@@ -63,6 +63,17 @@ public class TestFacturacion {
     }
 
     public void cambiarValorPromo() {
-        //
+
+        System.out.println("");
+        System.out.println("002 ---- Cambiamos un parametro de facturacion: ");
+        FacturacionController facturacionController = new FacturacionController();
+        facturacionController.agregarParametroFacturacion(12, 15, 1.2f);
+        facturacionController.agregarParametroFacturacion(0, 11, 0.7f);
+        facturacionController.mostrarValoresReservas();
+        System.out.println("");
+        System.out.println("hacemos cambios en el primer parametro");
+        facturacionController.cambiarParametrosFacturacion(1, 13, 18, 1.2f);
+        facturacionController.mostrarValoresReservas();
+
     }
 }

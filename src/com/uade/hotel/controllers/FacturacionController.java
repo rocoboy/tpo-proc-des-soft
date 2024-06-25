@@ -56,7 +56,12 @@ public class FacturacionController {
         } else {
             System.out.println("no existe la regla");
         }
+    }
 
+    public void agregarParametroFacturacion(int diasMinimos, int diasMaximos, float porcentajeFinal) {
+
+        int idValorReserva = valoresReservas.size() + 1;
+        valoresReservas.add(new ReglaPrecio(idValorReserva, diasMinimos, diasMaximos, porcentajeFinal));
     }
 
     public void mostrarValoresReservas() {
