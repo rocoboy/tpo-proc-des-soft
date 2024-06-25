@@ -14,8 +14,6 @@ public class Main {
             rol = scanner.nextInt();
 
             switch (rol) {
-                case 0:
-                    System.out.println("Saliendo...");
                 case 1:
                     testearClientes();
                     break;
@@ -29,6 +27,8 @@ public class Main {
                 case 4:
                     testearFacturacion();
                     break;
+                case 5:
+                    System.out.println("Saliendo...");
                 default:
                     break;
             }
